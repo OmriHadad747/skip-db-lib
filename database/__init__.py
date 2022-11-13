@@ -1,7 +1,6 @@
 from flask_pymongo import PyMongo as FlaskPymongo
 from flask_pymongo import wrappers
 from werkzeug.local import LocalProxy
-from flask_pymongo import PyMongo as FlaskPymongo
 from flask import current_app, g
 
 

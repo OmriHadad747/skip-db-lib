@@ -1,9 +1,8 @@
 from typing import List, Optional
 from datetime import datetime
 from enum import Enum
-from pydantic import Field, BaseModel, constr, conlist
-from flask import current_app
-from app.models import job as job_model
+from pydantic import Field, BaseModel, conlist
+from models import job as job_model
 
 
 class FreelancerCategoryEnum(Enum):

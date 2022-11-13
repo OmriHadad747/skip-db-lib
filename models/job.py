@@ -19,7 +19,7 @@ class JobStatusEnum(Enum):
 class Job(BaseModel):
     created_at: datetime = Field(default_factory=datetime.now)
     id: int = Field(alias="_id", default_factory=ObjectId)
-    job_category: JobCategoryEnum   # TODO change to list of categories in the future
+    job_category: JobCategoryEnum
     job_status: JobStatusEnum = JobStatusEnum.WAITING.value
     job_description: str
     job_price: str = None
