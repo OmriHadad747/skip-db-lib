@@ -3,14 +3,14 @@ from pymongo import command_cursor
 from pymongo.operations import UpdateOne
 from bson import ObjectId
 from models import freelancer as freelancer_model
-from models import job as job_moedl
+from models import job as job_model
 from . import db, _freelancers
 
 
 class FreelancerDatabase:
 
     @classmethod
-    def find(cls, job: job_moedl.Job) ->  command_cursor.CommandCursor:
+    def find(cls, job: job_model.Job) ->  command_cursor.CommandCursor:
         # TODO write docstring
         # TODO log here
         freelancers = db[_freelancers].aggregate([
