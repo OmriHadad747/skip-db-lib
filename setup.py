@@ -1,7 +1,8 @@
-from setuptools import setup, find_packages
-from functools import reduce
-from setuptools.command.install import install
 import os
+
+from setuptools import setup, find_packages
+from setuptools.command.install import install
+from functools import reduce
 
 
 class PostInstall(install):
