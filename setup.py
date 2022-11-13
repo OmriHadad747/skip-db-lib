@@ -32,7 +32,7 @@ setup(
     version=version,
     description=description,
     python_requires=">=3.8",
-    packages=["res", *find_packages(include=["hemunah_core*"])],
+    packages=[],#["res", *find_packages(include=["hemunah_core*"])],
     package_data={"": ["res/*.csv", "res/*.json", "res/*.yaml"]},
     include_package_data=True,
     install_requires=REQUIRED_PACKAGES,
