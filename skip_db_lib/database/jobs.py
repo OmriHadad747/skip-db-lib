@@ -1,7 +1,7 @@
 from typing import Optional
 from bson import ObjectId
 from models import job as job_moedl
-from database import db, _jobs
+from . import db, _jobs
 
 
 class JobDatabase:

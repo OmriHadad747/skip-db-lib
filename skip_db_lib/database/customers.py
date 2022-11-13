@@ -1,7 +1,7 @@
 from typing import Dict, List, Optional, Any
 from pymongo.operations import UpdateOne
 from bson import ObjectId
-from database import db, _customers
+from . import db, _customers
 
 
 class CustomerDatabase:

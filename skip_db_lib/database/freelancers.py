@@ -4,7 +4,7 @@ from pymongo.operations import UpdateOne
 from bson import ObjectId
 from models import freelancer as freelancer_model
 from models import job as job_moedl
-from database import db, _freelancers
+from . import db, _freelancers
 
 
 class FreelancerDatabase:
