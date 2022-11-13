@@ -16,8 +16,8 @@ def _install_requirements():
 
 
 REQUIRED_PACKAGES = [
-    "Flask-PyMongo == 2.3.0"
-    "pydantic == 1.10.2"
+    "Flask-PyMongo == 2.3.0",
+    "pydantic == 1.10.2",
     "pymongo == 4.3.2"
 ]
 
