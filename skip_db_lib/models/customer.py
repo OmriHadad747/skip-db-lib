@@ -1,7 +1,7 @@
 from typing import List, Optional
 from datetime import datetime
 from pydantic import Field, BaseModel
-from models import job as job_model
+from ..models import job as job_model
 
 
 class Customer(BaseModel):

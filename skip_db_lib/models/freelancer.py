@@ -2,7 +2,7 @@ from typing import List, Optional
 from datetime import datetime
 from enum import Enum
 from pydantic import Field, BaseModel, conlist
-from models import job as job_model
+from ..models import job as job_model
 
 
 class FreelancerCategoryEnum(Enum):

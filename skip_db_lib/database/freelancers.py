@@ -2,8 +2,8 @@ from typing import Dict, List, Optional, Any
 from pymongo import command_cursor
 from pymongo.operations import UpdateOne
 from bson import ObjectId
-from models import freelancer as freelancer_model
-from models import job as job_model
+from ..models import freelancer as freelancer_model
+from ..models import job as job_model
 from . import db, _freelancers
 
 

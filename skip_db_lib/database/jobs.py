@@ -1,6 +1,6 @@
 from typing import Optional
 from bson import ObjectId
-from models import job as job_model
+from ..models import job as job_model
 from . import db, _jobs
 
 
