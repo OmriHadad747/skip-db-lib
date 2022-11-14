@@ -9,5 +9,9 @@ venv/
 ENV/
 
 
+run.py
+__init__.py
+config.py
+
 # Playground
 playground.py
