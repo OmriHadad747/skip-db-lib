@@ -34,12 +34,12 @@ class Freelancer(BaseModel):
 
 class FreelancerUpdate(BaseModel):
     updated_at: datetime = Field(default_factory=datetime.now)
-    password: str
-    email: Optional[str]
-    phone: Optional[str]
-    tmp_county: Optional[str]
+    password: str = None
+    email: str = None
+    phone: str = None
+    tmp_county: str = None
     tmp_county_date: datetime = None
-    current_status: Optional[FreelancerStatusEnum]
-    current_location: Optional[conlist(item_type=float, min_items=2, max_items=2)]
-    current_location_date: Optional[datetime]
-    registration_token: Optional[str]
+    current_status: FreelancerStatusEnum = None
+    current_location: conlist(item_type=float, min_items=2, max_items=2) = None
+    current_location_date: datetime = None
+    registration_token: str = None
