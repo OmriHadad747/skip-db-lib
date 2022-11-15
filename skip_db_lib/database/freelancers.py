@@ -1,18 +1,29 @@
 from typing import Dict, List, Optional, Any
 from pymongo import command_cursor
+from pymongo import collection
 from pymongo.operations import UpdateOne
 from bson import ObjectId
 from ..models import freelancer as freelancer_model
 from ..models import job as job_model
+from ..custom_mongodb_encoders import codec_options
 from . import db, _freelancers
 
 
 class FreelancerDatabase:
+    def _get_coll(cls) -> collection.Collection:
+        """
+        Returns the relevant collection with pointing to a codec opetion
+
+        Returns:
+            collection.Collection: Jobs collection
+        """
+        return db[_freelancers].with_options(codec_options=codec_options)
+
     @classmethod
     def find_nearest_freelancers(cls, job: job_model.Job) -> command_cursor.CommandCursor:
         # TODO write docstring
         # TODO log here
-        freelancers = db[_freelancers].aggregate(
+        freelancers = cls._get_coll().aggregate(
             [
                 {
                     "$geoNear": {
@@ -35,17 +46,17 @@ class FreelancerDatabase:
 
     @classmethod
     def get_freelancer_by_id(cls, id: str) -> Optional[Any]:
-        freelancer = db[_freelancers].find_one({"_id": ObjectId(id)})
+        freelancer = cls._get_coll().find_one({"_id": ObjectId(id)})
         return freelancer
 
     @classmethod
     def get_freelancer_by_email(cls, email: str) -> Optional[Any]:
-        freelancer = db[_freelancers].find_one({"email": email})
+        freelancer = cls._get_coll().find_one({"email": email})
         return freelancer
 
     @classmethod
     def add_freelancer(cls, freelancer: Dict[str, Any]) -> Optional[bool]:
-        result = db[_freelancers].insert_one(freelancer)
+        result = cls._get_coll().insert_one(freelancer)
         return result.acknowledged
 
     @staticmethod
@@ -126,10 +137,10 @@ class FreelancerDatabase:
     @classmethod
     def update_freelancer(cls, email: str, fields: Dict[str, Any]) -> Optional[bool]:
         writes = cls._adapt_for_bulkwrite(fields, _filter={"email": email})
-        result = db[_freelancers].bulk_write(writes)
+        result = cls._get_coll().bulk_write(writes)
         return result.acknowledged
 
     @classmethod
     def delete_freelancer(cls, email: str) -> Optional[bool]:
-        result = db[_freelancers].delete_one({"email": email})
+        result = cls._get_coll().delete_one({"email": email})
         return result.acknowledged
