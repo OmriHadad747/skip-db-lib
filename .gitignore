@@ -3,10 +3,7 @@ __pycache__/
 
 # Environments
 .env
-.venv
-env/
-venv/
-ENV/
+venv
 
 # API
 run.py
