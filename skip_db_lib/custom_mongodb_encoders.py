@@ -3,8 +3,8 @@ from skip_db_lib.models.job import JobCategoryEnum, JobStatusEnum
 
 
 class JobCategoryEncoder(TypeEncoder):
-    
-    python_type = JobCategoryEnum   # the Python type acted upon by this type codec
+
+    python_type = JobCategoryEnum  # the Python type acted upon by this type codec
 
     def transform_python(self, value):
         """
@@ -15,8 +15,8 @@ class JobCategoryEncoder(TypeEncoder):
 
 
 class JobStatusEncoder(TypeEncoder):
-    
-    python_type = JobStatusEnum   # the Python type acted upon by this type codec
+
+    python_type = JobStatusEnum  # the Python type acted upon by this type codec
 
     def transform_python(self, value):
         """
@@ -24,7 +24,6 @@ class JobStatusEncoder(TypeEncoder):
         that BSON can encode.
         """
         return value.value
-
 
 
 job_category_encoder = JobCategoryEncoder()

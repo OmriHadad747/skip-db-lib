@@ -6,18 +6,18 @@ from ..models import job as job_model
 
 
 class FreelancerCategoryEnum(Enum):
-    GARAGE      = 0
-    LOCKSMITH   = 1
+    GARAGE = 0
+    LOCKSMITH = 1
 
 
 class FreelancerStatusEnum(Enum):
     AVAILABLE = 0
-    BUSY      = 1  
+    BUSY = 1
 
 
 class Freelancer(BaseModel):
     created_at: datetime = Field(default_factory=datetime.now)
-    password: str 
+    password: str
     email: str
     phone: str
     county: str

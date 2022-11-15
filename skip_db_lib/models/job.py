@@ -10,13 +10,13 @@ class JobCategoryEnum(Enum):
 
 
 class JobStatusEnum(Enum):
-    FREELANCER_FINDING  = 0
-    FREELANCER_FOUND    = 1
+    FREELANCER_FINDING = 0
+    FREELANCER_FOUND = 1
     FREELANCER_CANCELED = 2
-    CUSTOMER_CANCELD    = 3
-    APPROVED            = 4
-    IN_PROGRESS         = 5
-    DONE                = 6
+    CUSTOMER_CANCELD = 3
+    APPROVED = 4
+    IN_PROGRESS = 5
+    DONE = 6
 
 
 class Job(BaseModel):

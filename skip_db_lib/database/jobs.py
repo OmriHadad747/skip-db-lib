@@ -7,7 +7,6 @@ from . import db, _jobs
 
 
 class JobDatabase:
-
     @classmethod
     def _get_coll(cls) -> collection.Collection:
         """
@@ -18,20 +17,20 @@ class JobDatabase:
         """
         return db[_jobs].with_options(codec_options=codec_options)
 
-
     @classmethod
     def add_job(cls, job: job_model.Job) -> results.InsertOneResult:
         result = cls._get_coll().insert_one(job.dict())
         return result
 
-    
     @classmethod
     def get_job_by_id(cls, id: str) -> Dict[str, Any]:
         job = cls._get_coll().find_one({"_id": ObjectId(id)})
         return job
 
-
     @classmethod
     def update_job(cls, id: str, job: job_model.JobUpdate) -> results.UpdateResult:
-        result = cls._get_coll().update_one({"_id": ObjectId(id), "job_status": job_model.JobStatusEnum.FREELANCER_FINDING.value}, {"$set": job.dict(exclude_none=True)})
+        result = cls._get_coll().update_one(
+            {"_id": ObjectId(id), "job_status": job_model.JobStatusEnum.FREELANCER_FINDING.value},
+            {"$set": job.dict(exclude_none=True)},
+        )
         return result

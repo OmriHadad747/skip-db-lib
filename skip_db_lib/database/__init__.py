@@ -12,6 +12,7 @@ def get_dbs() -> wrappers.Collection:
         g.database = FlaskPymongo(current_app, uuidRepresentation="standard")
     return g.database.db
 
+
 db: wrappers.Collection = LocalProxy(get_dbs)
 _freelancers = current_app.config["FREELANCER_COLLECTION"]
 _customers = current_app.config["CUSTOMER_COLLECTION"]

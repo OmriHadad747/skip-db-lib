@@ -15,3 +15,6 @@ playground.py
 
 # vscode
 .vscode
+
+# TOML
+pyproject.toml
