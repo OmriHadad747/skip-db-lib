@@ -10,17 +10,20 @@ class JobCategoryEnum(Enum):
 
 
 class JobStatusEnum(Enum):
-    WAITING     = 0
-    CANCELED    = 1
-    IN_PROGRESS = 2
-    DONE        = 3
+    FREELANCER_FINDING  = 0
+    FREELANCER_FOUND    = 1
+    FREELANCER_CANCELED = 2
+    CUSTOMER_CANCELD    = 3
+    APPROVED            = 4
+    IN_PROGRESS         = 5
+    DONE                = 6
 
 
 class Job(BaseModel):
     created_at: datetime = Field(default_factory=datetime.now)
-    id: int = Field(alias="_id", default_factory=ObjectId)
+    _id: int = Field(alias="_id", default_factory=ObjectId)
     job_category: JobCategoryEnum
-    job_status: JobStatusEnum = JobStatusEnum.WAITING.value
+    job_status: JobStatusEnum = JobStatusEnum.FREELANCER_FINDING
     job_description: str
     job_price: str = None
     customer_email: str
@@ -29,5 +32,12 @@ class Job(BaseModel):
     customer_county: str
     customer_lon: float
     customer_lat: float
+    freelancer_email: str = None
+    freelancer_phone: str = None
+
+
+class JobUpdate(BaseModel):
+    job_status: JobStatusEnum = None
+    job_price: str = None
     freelancer_email: str = None
     freelancer_phone: str = None
