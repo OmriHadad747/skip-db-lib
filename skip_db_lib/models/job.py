@@ -30,8 +30,8 @@ class Job(BaseModel):
     customer_phone: str
     customer_address: str
     customer_county: str
-    customer_lon: float
-    customer_lat: float
+    customer_lon: float = None # make mandatory in the future
+    customer_lat: float = None  # make mandatory in the future
     freelancer_email: str = None
     freelancer_phone: str = None
 
