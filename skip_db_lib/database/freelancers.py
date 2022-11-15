@@ -10,6 +10,7 @@ from . import db, _freelancers
 
 
 class FreelancerDatabase:
+    @classmethod
     def _get_coll(cls) -> collection.Collection:
         """
         Returns the relevant collection with pointing to a codec opetion
