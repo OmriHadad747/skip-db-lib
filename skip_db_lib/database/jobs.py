@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 from bson import ObjectId
 from pymongo import collection, results
 from ..models import job as job_model
@@ -33,5 +33,5 @@ class JobDatabase:
 
     @classmethod
     def update_job(cls, id: str, job: job_model.JobUpdate) -> results.UpdateResult:
-        result = cls._get_coll().update_one({"_id": ObjectId(id)}, {"$set": job.dict(exclude_none=True)})
+        result = cls._get_coll().update_one({"_id": ObjectId(id), "job_status": job_model.JobStatusEnum.FREELANCER_FINDING.value}, {"$set": job.dict(exclude_none=True)})
         return result
