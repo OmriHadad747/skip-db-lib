@@ -1,7 +1,9 @@
+import pydantic as pyd
+
 from datetime import datetime
 from enum import Enum
-from pydantic import BaseModel, Field, validator
 from flask_pymongo import ObjectId
+from ..models import CustomBaseModel
 
 
 class JobCategoryEnum(Enum):
@@ -19,9 +21,9 @@ class JobStatusEnum(Enum):
     DONE = 6
 
 
-class Job(BaseModel):
-    created_at: datetime = Field(default_factory=datetime.now)
-    _id: int = Field(alias="_id", default_factory=ObjectId)
+class Job(CustomBaseModel):
+    created_at: datetime = pyd.Field(default_factory=datetime.now)
+    _id: int = pyd.Field(alias="_id", default_factory=ObjectId)
     job_category: JobCategoryEnum
     job_status: JobStatusEnum = JobStatusEnum.FREELANCER_FINDING
     job_description: str
@@ -35,20 +37,21 @@ class Job(BaseModel):
     freelancer_email: str = None
     freelancer_phone: str = None
 
-    @validator("job_category", "job_status", pre=True)
+
+    @pyd.validator("job_category", "job_status", pre=True)
     def decode_enum_value(cls, value):
         if isinstance(value, (JobCategoryEnum, JobStatusEnum)):
             return value.value
         return value
 
 
-class JobUpdate(BaseModel):
+class JobUpdate(CustomBaseModel):
     job_status: JobStatusEnum = None
     job_price: str = None
     freelancer_email: str = None
     freelancer_phone: str = None
 
-    @validator("job_status", pre=True)
+    @pyd.validator("job_status", pre=True)
     def decode_enum_value(cls, value):
         if isinstance(value, JobStatusEnum):
             return value.value

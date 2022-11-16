@@ -1,11 +1,13 @@
+import pydantic as pyd
+
 from typing import List, Optional
 from datetime import datetime
-from pydantic import Field, BaseModel
 from ..models import job as job_model
+from ..models import CustomBaseModel
 
 
-class Customer(BaseModel):
-    created_at: datetime = Field(default_factory=datetime.now)
+class Customer(CustomBaseModel):
+    created_at: datetime = pyd.Field(default_factory=datetime.now)
     password: str
     email: str
     phone: str
@@ -13,14 +15,14 @@ class Customer(BaseModel):
     county: str
     rating: float = 1.0
     job_history: List[job_model.Job] = []
-    lon: Optional[float]
-    lat: Optional[float]
+    lon: float = None
+    lat: float = None
 
 
-class CustomerUpdate(BaseModel):
-    updated_at: datetime = Field(default_factory=datetime.now)
+class CustomerUpdate(CustomBaseModel):
+    updated_at: datetime = pyd.Field(default_factory=datetime.now)
     password: str
-    email: Optional[str]
-    phone: Optional[str]
-    address: Optional[str]
-    county: Optional[str]
+    email: str = None
+    phone: str = None
+    address: str = None
+    county: str = None

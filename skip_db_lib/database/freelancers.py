@@ -36,6 +36,7 @@ class FreelancerDatabase:
                         "query": {
                             "current_status": freelancer_model.FreelancerStatusEnum.AVAILABLE.value,
                             "county": job.customer_county,
+                            # TODO add another condition for category
                         },
                         "distanceField": "distance",
                     }

@@ -1,8 +1,10 @@
+import pydantic as pyd
+
 from typing import List, Optional
 from datetime import datetime
 from enum import Enum
-from pydantic import Field, BaseModel, conlist
 from ..models import job as job_model
+from ..models import CustomBaseModel
 
 
 class FreelancerCategoryEnum(Enum):
@@ -15,8 +17,8 @@ class FreelancerStatusEnum(Enum):
     BUSY = 1
 
 
-class Freelancer(BaseModel):
-    created_at: datetime = Field(default_factory=datetime.now)
+class Freelancer(CustomBaseModel):
+    created_at: datetime = pyd.Field(default_factory=datetime.now)
     password: str
     email: str
     phone: str
@@ -27,19 +29,19 @@ class Freelancer(BaseModel):
     rating: float = 1.0
     job_history: List[job_model.Job] = []
     current_status: FreelancerStatusEnum = FreelancerStatusEnum.AVAILABLE.value
-    current_location: Optional[conlist(item_type=float, min_items=2, max_items=2)]
+    current_location: Optional[pyd.conlist(item_type=float, min_items=2, max_items=2)]
     current_location_date: Optional[datetime]
     registration_token: str
 
 
-class FreelancerUpdate(BaseModel):
-    updated_at: datetime = Field(default_factory=datetime.now)
+class FreelancerUpdate(CustomBaseModel):
+    updated_at: datetime = pyd.Field(default_factory=datetime.now)
     password: str = None
     email: str = None
     phone: str = None
     tmp_county: str = None
     tmp_county_date: datetime = None
     current_status: FreelancerStatusEnum = None
-    current_location: conlist(item_type=float, min_items=2, max_items=2) = None
+    current_location: pyd.conlist(item_type=float, min_items=2, max_items=2) = None
     current_location_date: datetime = None
     registration_token: str = None
