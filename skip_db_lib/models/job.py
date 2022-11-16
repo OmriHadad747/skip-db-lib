@@ -39,6 +39,7 @@ class Job(BaseModel):
     def decode_enum_value(cls, value):
         if isinstance(value, (JobCategoryEnum, JobStatusEnum)):
             return value.value
+        return value
 
 
 class JobUpdate(BaseModel):
@@ -51,3 +52,4 @@ class JobUpdate(BaseModel):
     def decode_enum_value(cls, value):
         if isinstance(value, JobStatusEnum):
             return value.value
+        return value
