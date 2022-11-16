@@ -1,6 +1,6 @@
 import pydantic as pyd
 
-from typing import List, Optional
+from typing import List
 from datetime import datetime
 from ..models import job as job_model
 from ..models import CustomBaseModel
@@ -21,7 +21,7 @@ class Customer(CustomBaseModel):
 
 class CustomerUpdate(CustomBaseModel):
     updated_at: datetime = pyd.Field(default_factory=datetime.now)
-    password: str
+    password: str = None
     email: str = None
     phone: str = None
     address: str = None

@@ -23,14 +23,14 @@ class Freelancer(CustomBaseModel):
     email: str
     phone: str
     county: str
-    tmp_county: Optional[str]
-    tmp_county_date: Optional[datetime]
+    tmp_county: str = None
+    tmp_county_date: datetime = None
     category: List[FreelancerCategoryEnum] = []
     rating: float = 1.0
     job_history: List[job_model.Job] = []
     current_status: FreelancerStatusEnum = FreelancerStatusEnum.AVAILABLE.value
-    current_location: Optional[pyd.conlist(item_type=float, min_items=2, max_items=2)]
-    current_location_date: Optional[datetime]
+    current_location: pyd.conlist(item_type=float, min_items=2, max_items=2) = None
+    current_location_date: datetime = None
     registration_token: str
 
 

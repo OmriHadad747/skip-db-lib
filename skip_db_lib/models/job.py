@@ -38,21 +38,8 @@ class Job(CustomBaseModel):
     freelancer_phone: str = None
 
 
-    @pyd.validator("job_category", "job_status", pre=True)
-    def decode_enum_value(cls, value):
-        if isinstance(value, (JobCategoryEnum, JobStatusEnum)):
-            return value.value
-        return value
-
-
 class JobUpdate(CustomBaseModel):
     job_status: JobStatusEnum = None
     job_price: str = None
     freelancer_email: str = None
     freelancer_phone: str = None
-
-    @pyd.validator("job_status", pre=True)
-    def decode_enum_value(cls, value):
-        if isinstance(value, JobStatusEnum):
-            return value.value
-        return value
