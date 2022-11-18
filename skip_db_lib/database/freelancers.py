@@ -30,7 +30,7 @@ class FreelancerDatabase:
                     "$geoNear": {
                         "near": {
                             "type": "Point",
-                            "coordinates": [job.customer_lon, job.customer_lat],
+                            "coordinates": [job.job_location[0], job.job_location[1]],
                         },
                         "spherical": True,
                         "query": {
