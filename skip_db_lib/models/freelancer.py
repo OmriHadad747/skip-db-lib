@@ -31,8 +31,8 @@ class Freelancer(CustomBaseModel):
     rating: float = 1.0
     job_history: List[job_model.Job] = []
     current_status: FreelancerStatusEnum = FreelancerStatusEnum.AVAILABLE.value
-    current_location: pyd.conlist(item_type=float, min_items=2, max_items=2) = None
-    current_location_date: datetime = None
+    location: pyd.conlist(item_type=float, min_items=2, max_items=2)
+    location_date: datetime = pyd.Field(default_factory=datetime.now)
     registration_token: str
 
 

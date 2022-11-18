@@ -17,8 +17,7 @@ class Customer(CustomBaseModel):
     county: str
     rating: float = 1.0
     job_history: List[job_model.Job] = []
-    lon: float = None
-    lat: float = None
+    location: pyd.conlist(item_type=float, min_items=2, max_items=2)
     registration_token: str
 
 
@@ -29,4 +28,5 @@ class CustomerUpdate(CustomBaseModel):
     phone: str = None
     address: str = None
     county: str = None
+    location: pyd.conlist(item_type=float, min_items=2, max_items=2) = None
     registration_token: str = None

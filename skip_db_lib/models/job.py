@@ -28,13 +28,12 @@ class Job(CustomBaseModel):
     job_category: JobCategoryEnum
     job_status: JobStatusEnum = JobStatusEnum.FREELANCER_FINDING.value
     job_description: str
+    job_location: pyd.conlist(item_type=float, min_items=2, max_items=2)
     job_price: str = None
     customer_email: str
     customer_phone: str
     customer_address: str
     customer_county: str
-    customer_lon: float = None  # make mandatory in the future
-    customer_lat: float = None  # make mandatory in the future
     freelancer_email: str = None
     freelancer_phone: str = None
 
