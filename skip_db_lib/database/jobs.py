@@ -19,7 +19,7 @@ class JobDatabase:
 
     @classmethod
     def add_job(cls, job: job_model.Job) -> results.InsertOneResult:
-        result = cls._get_coll().insert_one(job.dict())
+        result = cls._get_coll().insert_one(job.dict(by_alias=True))
         return result
 
     @classmethod
