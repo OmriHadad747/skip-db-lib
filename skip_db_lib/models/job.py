@@ -10,6 +10,7 @@ from ..models import CustomBaseModel
 class JobCategoryEnum(Enum):
     GARAGE_DOOR = 0
     LOCK_SMITH = 1
+    MOVING = 2
 
 
 class JobStatusEnum(Enum):
