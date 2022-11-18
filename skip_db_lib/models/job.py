@@ -39,16 +39,15 @@ class Job(CustomBaseModel):
     freelancer_phone: str = None
 
 
-    @classmethod
-    def job_str_str(cls) -> Dict[str, Any]:
+    def job_str_str(self) -> Dict[str, Any]:
         return {
-            "job_id": cls._id.str,
-            "job_category": str(cls.job_category),
-            "job_description": cls.job_description,
-            "customer_address": cls.customer_address,
-            "customer_county": cls.customer_county,
-            "customer_lon": str(cls.customer_lon),
-            "customer_lat": str(cls.customer_lat),
+            "job_id": self._id.str,
+            "job_category": str(self.job_category),
+            "job_description": self.job_description,
+            "customer_address": self.customer_address,
+            "customer_county": self.customer_county,
+            "customer_lon": str(self.customer_lon),
+            "customer_lat": str(self.customer_lat),
         }
 
 
