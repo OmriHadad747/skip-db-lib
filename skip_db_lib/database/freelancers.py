@@ -1,7 +1,6 @@
 from typing import Dict, List, Optional, Any
 from pymongo import command_cursor
 from pymongo import collection
-from pymongo import ASCENDING
 from pymongo.operations import UpdateOne
 from bson import ObjectId
 from ..models import freelancer as freelancer_model

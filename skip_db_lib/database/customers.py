@@ -1,24 +1,36 @@
 from typing import Dict, List, Optional, Any
 from pymongo.operations import UpdateOne
+from pymongo import collection
 from bson import ObjectId
+from ..custom_mongodb_encoders import codec_options
 from . import db, _customers
 
 
 class CustomerDatabase:
     @classmethod
+    def _get_coll(cls) -> collection.Collection:
+        """
+        Returns the relevant collection with pointing to a codec opetion
+
+        Returns:
+            collection.Collection: Jobs collection
+        """
+        return db[_customers].with_options(codec_options=codec_options)
+
+    @classmethod
     def get_customer_by_id(cls, id: str) -> Optional[Any]:
-        customer = db[_customers].find_one({"_id": ObjectId(id)})
+        customer = cls._get_coll().find_one({"_id": ObjectId(id)})
         return customer
 
     @classmethod
     def get_customer_by_email(cls, email: str) -> Optional[Any]:
-        customer = db[_customers].find_one({"email": email})
+        customer = cls._get_coll().find_one({"email": email})
         return customer
 
     @classmethod
     def add_customer(cls, customer: Dict[str, Any]) -> Optional[bool]:
         # TODO prevent mongodb to create an ID for a new customer
-        result = db[_customers].insert_one(customer)
+        result = cls._get_coll().insert_one(customer)
         return result.acknowledged
 
     @staticmethod
@@ -97,10 +109,10 @@ class CustomerDatabase:
     @classmethod
     def update_customer(cls, email: str, fields: Dict[str, Any]) -> Optional[bool]:
         writes = cls._adapt_for_bulkwrite(fields, _filter={"email": email})
-        result = db[_customers].bulk_write(writes)
+        result = cls._get_coll().bulk_write(writes)
         return result.acknowledged
 
     @classmethod
     def delete_customer(cls, customer_email: str) -> Optional[bool]:
-        result = db[_customers].delete_one({"email": customer_email})
+        result = cls._get_coll().delete_one({"email": customer_email})
         return result.acknowledged
