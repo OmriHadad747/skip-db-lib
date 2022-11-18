@@ -20,6 +20,7 @@ REQUIRED_PACKAGES = [
     "pydantic == 1.10.2",
     "pymongo == 4.3.2",
     "black == 22.8.0",
+    "pytest-mock == 3.8.2",
 ]
 
 EXTRA_REQUIREMENTS = {}

@@ -1,8 +1,9 @@
 import pydantic as pyd
 
-from typing import List, Optional
+from typing import List
 from datetime import datetime
 from enum import Enum
+from flask_pymongo import ObjectId
 from ..models import job as job_model
 from ..models import CustomBaseModel
 
@@ -19,6 +20,7 @@ class FreelancerStatusEnum(Enum):
 
 class Freelancer(CustomBaseModel):
     created_at: datetime = pyd.Field(default_factory=datetime.now)
+    _id: int = ObjectId()
     password: str
     email: str
     phone: str

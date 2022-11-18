@@ -23,7 +23,7 @@ class JobStatusEnum(Enum):
 
 class Job(CustomBaseModel):
     created_at: datetime = pyd.Field(default_factory=datetime.now)
-    _id: int = pyd.Field(alias="_id", default_factory=ObjectId)
+    _id: int = ObjectId()
     job_category: JobCategoryEnum
     job_status: JobStatusEnum = JobStatusEnum.FREELANCER_FINDING.value
     job_description: str
