@@ -1,6 +1,7 @@
 from typing import Dict, List, Optional, Any
 from pymongo import command_cursor
 from pymongo import collection
+from pymongo import ASCENDING
 from pymongo.operations import UpdateOne
 from bson import ObjectId
 from ..models import freelancer as freelancer_model
@@ -10,6 +11,9 @@ from . import db, _freelancers
 
 
 class FreelancerDatabase:
+
+    location_indexed = False
+
     @classmethod
     def _get_coll(cls) -> collection.Collection:
         """
@@ -18,6 +22,10 @@ class FreelancerDatabase:
         Returns:
             collection.Collection: Jobs collection
         """
+        if not cls.location_indexed:
+            db[_freelancers].create_index([("location", "2dsphere")])
+            cls.location_indexed = True
+
         return db[_freelancers].with_options(codec_options=codec_options)
 
     @classmethod
