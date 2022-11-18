@@ -50,8 +50,8 @@ class Job(CustomBaseModel):
             "job_id": str(self.id),
             "job_category": str(self.job_category),
             "job_description": self.job_description,
-            "job_lon": self.job_location[0],
-            "job_lat": self.job_location[1],
+            "job_lon": str(self.job_location[0]),
+            "job_lat": str(self.job_location[1]),
         }
 
         if customer_part:
