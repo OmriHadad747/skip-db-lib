@@ -38,7 +38,7 @@ class Job(CustomBaseModel):
     freelancer_email: str = None
     freelancer_phone: str = None
 
-    @pyd.validator("id")
+    @pyd.validator("id", pre=True)
     def convert_id_to_str(cls, value):
         if isinstance(value, ObjectId):
             return str(value)
