@@ -27,10 +27,10 @@ class Freelancer(CustomBaseModel):
     county: str
     tmp_county: str = None
     tmp_county_date: datetime = None
-    category: List[FreelancerCategoryEnum] = []
+    categories: pyd.conlist(item_type=FreelancerCategoryEnum)
+    current_status: FreelancerStatusEnum = FreelancerStatusEnum.AVAILABLE.value
     rating: float = 1.0
     job_history: List[job_model.Job] = []
-    current_status: FreelancerStatusEnum = FreelancerStatusEnum.AVAILABLE.value
     location: pyd.conlist(item_type=float, min_items=2, max_items=2)
     location_date: datetime = pyd.Field(default_factory=datetime.now)
     registration_token: str
@@ -41,9 +41,12 @@ class FreelancerUpdate(CustomBaseModel):
     password: str = None
     email: str = None
     phone: str = None
+    county: str = None
     tmp_county: str = None
     tmp_county_date: datetime = None
+    categories: pyd.conlist(item_type=FreelancerCategoryEnum) = None
     current_status: FreelancerStatusEnum = None
+    rating: float = None
     current_location: pyd.conlist(item_type=float, min_items=2, max_items=2) = None
     current_location_date: datetime = None
     registration_token: str = None

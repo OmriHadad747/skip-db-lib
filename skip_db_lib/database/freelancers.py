@@ -31,7 +31,6 @@ class FreelancerDatabase:
     @classmethod
     def find_nearest_freelancers(cls, job: job_model.Job) -> command_cursor.CommandCursor:
         # TODO write docstring
-        # TODO log here
         freelancers = cls._get_coll().aggregate(
             [
                 {
@@ -51,7 +50,6 @@ class FreelancerDatabase:
                 }
             ]
         )
-        # TODO log here
         return freelancers
 
     @classmethod
