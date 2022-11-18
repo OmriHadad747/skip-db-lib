@@ -44,16 +44,28 @@ class Job(CustomBaseModel):
             return str(value)
         return value
 
-    def job_to_str(self) -> Dict[str, Any]:
-        return {
+    def job_to_str(self, customer_part: bool=True, freelancer_part: bool=False) -> Dict[str, Any]:
+        job_data = {
             "job_id": str(self.id),
             "job_category": str(self.job_category),
-            "job_description": self.job_description,
-            "customer_address": self.customer_address,
-            "customer_county": self.customer_county,
-            "customer_lon": str(self.customer_lon),
-            "customer_lat": str(self.customer_lat),
+            "job_description": self.job_description
         }
+
+        if customer_part:
+            job_data.update({
+                "customer_address": self.customer_address,
+                "customer_county": self.customer_county,
+                "customer_lon": str(self.customer_lon),
+                "customer_lat": str(self.customer_lat),
+            })
+
+        if freelancer_part:
+            job_data.update({
+                "freelancer_email": self.freelancer_email,
+                "freelancer_phone": self.freelancer_phone,
+            })
+        
+        return job_data
 
 
 class JobUpdate(CustomBaseModel):
