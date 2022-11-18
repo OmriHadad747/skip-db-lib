@@ -1,3 +1,4 @@
+from typing import Any, Dict
 import pydantic as pyd
 
 from datetime import datetime
@@ -36,6 +37,20 @@ class Job(CustomBaseModel):
     customer_lat: float = None  # make mandatory in the future
     freelancer_email: str = None
     freelancer_phone: str = None
+
+
+    @classmethod
+    def job_str_str(cls) -> Dict[str, Any]:
+        return {
+            "job_id": cls._id.str,
+            "job_category": str(cls.job_category),
+            "job_description": cls.job_description,
+            "customer_address": cls.customer_address,
+            "customer_county": cls.customer_county,
+            "customer_lon": str(cls.customer_lon),
+            "customer_lat": str(cls.customer_lat),
+        }
+
 
 
 class JobUpdate(CustomBaseModel):
