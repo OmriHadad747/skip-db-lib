@@ -47,3 +47,8 @@ class FreelancerUpdate(CustomBaseModel):
     current_location: pyd.conlist(item_type=float, min_items=2, max_items=2) = None
     current_location_date: datetime = None
     registration_token: str = None
+
+
+class FreelancerTakeJob(CustomBaseModel):
+    freelancer_email: str
+    freelancer_phone: str
