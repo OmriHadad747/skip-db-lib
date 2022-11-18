@@ -19,6 +19,7 @@ class Customer(CustomBaseModel):
     job_history: List[job_model.Job] = []
     lon: float = None
     lat: float = None
+    registration_token: str
 
 
 class CustomerUpdate(CustomBaseModel):
@@ -28,3 +29,4 @@ class CustomerUpdate(CustomBaseModel):
     phone: str = None
     address: str = None
     county: str = None
+    registration_token: str = None
