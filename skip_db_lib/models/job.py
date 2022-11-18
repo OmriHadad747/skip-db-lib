@@ -39,7 +39,7 @@ class Job(CustomBaseModel):
     freelancer_phone: str = None
 
 
-    def job_str_str(self) -> Dict[str, Any]:
+    def job_to_str(self) -> Dict[str, Any]:
         return {
             "job_id": self._id.str,
             "job_category": str(self.job_category),
