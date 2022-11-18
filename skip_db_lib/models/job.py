@@ -38,6 +38,12 @@ class Job(CustomBaseModel):
     freelancer_email: str = None
     freelancer_phone: str = None
 
+    @pyd.validator("_id")
+    def convert_id_to_str(cls, value):
+        if isinstance(value, ObjectId):
+            return str(value)
+        return value
+
     def job_to_str(self) -> Dict[str, Any]:
         return {
             "job_id": str(self.id),
