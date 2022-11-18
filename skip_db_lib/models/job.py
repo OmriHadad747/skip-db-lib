@@ -24,7 +24,7 @@ class JobStatusEnum(Enum):
 
 class Job(CustomBaseModel):
     created_at: datetime = pyd.Field(default_factory=datetime.now)
-    _id: ObjectId = ObjectId()
+    id: str = pyd.Field(alias="_id", default_factory=ObjectId)
     job_category: JobCategoryEnum
     job_status: JobStatusEnum = JobStatusEnum.FREELANCER_FINDING.value
     job_description: str
@@ -33,15 +33,14 @@ class Job(CustomBaseModel):
     customer_phone: str
     customer_address: str
     customer_county: str
-    customer_lon: float = None # make mandatory in the future
+    customer_lon: float = None  # make mandatory in the future
     customer_lat: float = None  # make mandatory in the future
     freelancer_email: str = None
     freelancer_phone: str = None
 
-
     def job_to_str(self) -> Dict[str, Any]:
         return {
-            "job_id": self._id.str,
+            "job_id": str(self.id),
             "job_category": str(self.job_category),
             "job_description": self.job_description,
             "customer_address": self.customer_address,
@@ -49,7 +48,6 @@ class Job(CustomBaseModel):
             "customer_lon": str(self.customer_lon),
             "customer_lat": str(self.customer_lat),
         }
-
 
 
 class JobUpdate(CustomBaseModel):
