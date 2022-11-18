@@ -47,15 +47,17 @@ class Job(CustomBaseModel):
         job_data = {
             "job_id": str(self.id),
             "job_category": str(self.job_category),
-            "job_description": self.job_description
+            "job_description": self.job_description,
+            "job_lon": self.job_location[0],
+            "job_lat": self.job_location[1]
         }
 
         if customer_part:
             job_data.update({
+                "customer_email": self.customer_email,
+                "customer_phone": self.customer_phone,
                 "customer_address": self.customer_address,
                 "customer_county": self.customer_county,
-                "customer_lon": str(self.customer_lon),
-                "customer_lat": str(self.customer_lat),
             })
 
         if freelancer_part:
