@@ -28,9 +28,11 @@ class JobDatabase:
         return job
 
     @classmethod
-    def update_job(cls, id: str, job: job_model.JobUpdate) -> results.UpdateResult:
+    def update_job(
+        cls, id: str, job: job_model.JobUpdate, curr_job_status: job_model.JobStatusEnum
+    ) -> results.UpdateResult:
         result = cls._get_coll().update_one(
-            {"_id": ObjectId(id), "job_status": job_model.JobStatusEnum.FREELANCER_FINDING.value},
+            {"_id": ObjectId(id), "job_status": curr_job_status.value},
             {"$set": job.dict(exclude_none=True)},
         )
         return result

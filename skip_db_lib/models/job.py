@@ -23,6 +23,19 @@ class JobStatusEnum(Enum):
     DONE = 6
 
 
+class JobQuotation(CustomBaseModel):
+    quotation_discription: str
+    estimated_job_duration: datetime
+    quotation: str
+
+    def quotation_to_str(self) -> Dict[str, Any]:
+        return {
+            "quotation_description": self.quotation_discription,
+            "estimated_job_duration": self.estimated_job_duration.isoformat(),
+            "quotation": self.quotation,
+        }
+
+
 class Job(CustomBaseModel):
     created_at: datetime = pyd.Field(default_factory=datetime.now)
     id: str = pyd.Field(alias="_id", default_factory=ObjectId)
@@ -30,6 +43,7 @@ class Job(CustomBaseModel):
     job_status: JobStatusEnum = JobStatusEnum.FREELANCER_FINDING.value
     job_description: str
     job_location: pyd.conlist(item_type=float, min_items=2, max_items=2)
+    job_quotation: JobQuotation = None
     job_price: str = None
     customer_email: str
     customer_phone: str
@@ -78,6 +92,7 @@ class Job(CustomBaseModel):
 
 class JobUpdate(CustomBaseModel):
     job_status: JobStatusEnum = None
+    job_quotation: JobQuotation = None
     job_price: str = None
     freelancer_email: str = None
     freelancer_phone: str = None
