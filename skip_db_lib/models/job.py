@@ -25,13 +25,13 @@ class JobStatusEnum(Enum):
 
 class JobQuotation(CustomBaseModel):
     quotation_discription: str
-    estimated_job_duration: datetime
+    estimated_job_duration: str
     quotation: str
 
     def quotation_to_str(self) -> Dict[str, Any]:
         return {
             "quotation_description": self.quotation_discription,
-            "estimated_job_duration": self.estimated_job_duration.isoformat(),
+            "estimated_job_duration": self.estimated_job_duration,
             "quotation": self.quotation,
         }
 
