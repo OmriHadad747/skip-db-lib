@@ -1,20 +1,31 @@
-# Byte-compiled / optimized / DLL files
+# __pycache__
 __pycache__/
 
-# Environments
+# pytest cache
+.pytest_cache
+
+# environment variables
 .env
+
+# test coverage
+.coverage
+
+# vscode
+.vscode
+
+# virtual environment
 venv
+
+# playground
+playground.py
+
+# service account file
+skip-push-notification_fsa.json
 
 # API
 run.py
 skip_db_lib/__init__.py
 config.py
-
-# Playground
-playground.py
-
-# vscode
-.vscode
 
 # TOML
 pyproject.toml

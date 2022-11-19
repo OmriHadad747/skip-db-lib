@@ -93,7 +93,10 @@ class CustomerDatabase:
 
                 op, data = val.popitem()
                 writes.append(
-                    UpdateOne(_filter, CustomerDatabase._build_array_update_write(field, op, data))
+                    UpdateOne(
+                        _filter,
+                        CustomerDatabase._build_array_update_write(field, op, data),
+                    )
                 )
             else:
                 basic_update_write["$set"][field] = val

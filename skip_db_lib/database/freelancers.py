@@ -127,7 +127,8 @@ class FreelancerDatabase:
                 op, data = val.popitem()
                 writes.append(
                     UpdateOne(
-                        _filter, FreelancerDatabase._build_array_update_write(field, op, data)
+                        _filter,
+                        FreelancerDatabase._build_array_update_write(field, op, data),
                     )
                 )
             else:

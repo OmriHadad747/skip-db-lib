@@ -13,7 +13,8 @@ def test_get_customer_by_id(app: flask.Flask, test_id: str, test_customer: Dict[
         mocker.patch(f"{db_module_path}.get_customer_by_id._get_coll", return_value=1)
 
         mocker.patch(
-            f"{db_module_path}.get_customer_by_id._get_coll.find_one", return_value=test_customer
+            f"{db_module_path}.get_customer_by_id._get_coll.find_one",
+            return_value=test_customer,
         )
 
         customer = CustomerDatabase.get_customer_by_id(test_id)
