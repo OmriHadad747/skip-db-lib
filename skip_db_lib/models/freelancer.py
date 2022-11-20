@@ -11,6 +11,7 @@ from ..models import CustomBaseModel
 class FreelancerCategoryEnum(Enum):
     GARAGE = 0
     LOCKSMITH = 1
+    MOVING = 2
 
 
 class FreelancerStatusEnum(Enum):
